@@ -1,0 +1,25 @@
+<head>
+    <script src="jquery.js"></script>
+    <script src="plotly-latest.min.js"></script>
+</head>
+
+<body>
+  
+  <div id="myDiv">
+  </div>
+  <script>
+      $(function ()
+      {
+          $.ajax({
+                        type: "GET", //GET还是POST,不是必须
+                        url: "data.json",
+                        success: function(data_json) 
+                        {
+                            var data = data_json['data'];
+                            var layout = data_json['layout'];
+                            Plotly.newPlot('myDiv', data, layout);
+                        }
+                });
+      })
+  </script>
+</body>

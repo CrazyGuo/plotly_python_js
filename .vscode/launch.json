@@ -1,0 +1,16 @@
+
+{
+    "version": "0.2.0",
+    "configurations": [
+        
+        {
+            "name": "Python: Study",
+            "type": "python",
+            "request": "launch",
+            "pythonPath": "C:/Users/wuzhuguo/AppData/Local/Continuum/anaconda3/envs/odoo12/python.exe",
+            "program": "${file}",
+            "cwd": "${workspaceRoot}",
+            "env": {}
+        }
+    ]
+}
