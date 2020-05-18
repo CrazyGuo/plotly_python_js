@@ -1,6 +1,9 @@
 # plotly_python_js
 本项目用来学习plotly库的Python后端与前端plotly.js的图形报表
 
+day3
+基本折线图案例
+
 day02
 1.scatter散点图案例的学习：express和graph_object两种方式
 
