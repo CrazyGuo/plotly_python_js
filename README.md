@@ -1,6 +1,9 @@
 # plotly_python_js
 本项目用来学习plotly库的Python后端与前端plotly.js的图形报表
 
+day4
+折线图自定义处理label外观
+
 day3
 基本折线图案例
 
