@@ -1,6 +1,10 @@
 # plotly_python_js
 本项目用来学习plotly库的Python后端与前端plotly.js的图形报表
 
+day6
+1.测试20万级别数据的曲线渲染
+
+
 day5
 测试pandas以及requests等类库
 
