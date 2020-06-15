@@ -1,6 +1,10 @@
 # plotly_python_js
 本项目用来学习plotly库的Python后端与前端plotly.js的图形报表
 
+day8
+1.request_odoo_login测试request访问odoo的login接口
+2.request_odoo_api根据前面生成的session_id登录auth=user权限的接口
+
 day7
 1.单台机器一月4餐柱状图
 2.单台机器一月4餐饼状图比例
