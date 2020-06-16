@@ -1,6 +1,11 @@
 # plotly_python_js
 本项目用来学习plotly库的Python后端与前端plotly.js的图形报表
 
+day9
+1.request_odoo_mps集中odoo的login与api接口
+2.request_dotnetmvc_odoo通过asp.net mvc访问odoo接口,测试结论为：asp.net mvc接口有问题
+
+
 day8
 1.request_odoo_login测试request访问odoo的login接口
 2.request_odoo_api根据前面生成的session_id登录auth=user权限的接口
