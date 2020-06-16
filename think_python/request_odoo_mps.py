@@ -2,13 +2,15 @@
 
 import requests
 
-sid = 'f8a52dc534d6cfd2e4491a1a06532d8b4c064a65'
+sid = 'f0816c5bf7682afd9face7c8ec5126beba852617'
 headers = {'Content-Type': 'application/json'}
 url = "http://10.202.143.240:8070/api/ionic/login_auth"
 params = { "params": {"login":"wuzhuguo", "pwd":"Odoo@12345"} }
 
 if sid is None:
-    request_result = requests.post(url, json=params, headers=headers).json()
+    #request_result = requests.post(url, json=params, headers=headers).json()
+    request = requests.post(url, json=params, headers=headers)
+    request_result = request.json()
     sid = request_result['result'].get("session", None)
     print(request_result)
 else:
