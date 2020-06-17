@@ -1,6 +1,17 @@
 # plotly_python_js
 本项目用来学习plotly库的Python后端与前端plotly.js的图形报表
 
+day10
+1.确定asp.net mvc 以session_id访问odoo接口有效的代码
+https://github.com/CrazyGuo/PtsSolution/blob/master/HengShen.Pts.WebApi/Controllers/App/FlexOdooApiController.cs
+
+2.理解session_id的生成过程
+https://github.com/pallets/werkzeug/blob/0.11.15/werkzeug/contrib/sessions.py
+
+3.RedisSessionSrore扩展项目
+https://github.com/CrazyGuo/imiktech_addons/blob/master/redis_session_store/sessionstore.py
+
+
 day9
 1.request_odoo_mps集中odoo的login与api接口
 2.request_dotnetmvc_odoo通过asp.net mvc访问odoo接口,测试结论为：asp.net mvc接口有问题

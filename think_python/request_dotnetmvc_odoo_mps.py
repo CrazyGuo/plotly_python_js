@@ -4,7 +4,7 @@ import requests
 import json
 
 sid = None #
-sid = 'f0816c5bf7682afd9face7c8ec5126beba852617'
+sid = 'e6cf329ed7725ae6b027223692180cd1581ffd3d'
 headers = {'Content-Type': 'application/json', 'Cookie': "ab"}
 net_url = "http://wuznt202/flexpsappapi/api/flexodoo/requestodoo"
 odoo_url = "http://10.202.143.240:8070/api/ionic/login_auth"
