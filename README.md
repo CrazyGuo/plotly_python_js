@@ -1,6 +1,12 @@
 # plotly_python_js
 本项目用来学习plotly库的Python后端与前端plotly.js的图形报表
 
+day12
+ionic --> asp.net mvc --> odoo的联合测试
+
+day11
+jpush极光推送的测试
+
 day10
 1.确定asp.net mvc 以session_id访问odoo接口有效的代码
 https://github.com/CrazyGuo/PtsSolution/blob/master/HengShen.Pts.WebApi/Controllers/App/FlexOdooApiController.cs
