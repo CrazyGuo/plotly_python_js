@@ -1,6 +1,9 @@
 # plotly_python_js
 本项目用来学习plotly库的Python后端与前端plotly.js的图形报表
 
+day13
+1.requests使用post上传带多文件的form到werkzeug
+
 day12
 ionic --> asp.net mvc --> odoo的联合测试
 
