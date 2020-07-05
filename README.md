@@ -1,6 +1,11 @@
 # plotly_python_js
 本项目用来学习plotly库的Python后端与前端plotly.js的图形报表
 
+day14
+1.requests使用post上传form与json数据到werkzeug
+2.args与kwargs参数的匹配问题
+
+
 day13
 1.requests使用post上传带多文件的form到werkzeug
 
