@@ -92,16 +92,32 @@ class Communication():
                 count = self.main_engine.in_waiting
                 l_data = []
                 for i in range(count):
-                    if i < 22: #只读取前22个字节
-                        str_data = "%s" % self.Read_Size(1).hex().upper()
-                        l_data.append(str_data)
+                    data = self.Read_Size(1)
+                    if data:
+                        str_data = "%s" % data.hex().upper()
                     else:
-                        self.Read_Size(1) #读取但不再分析
+                        str_data = ''
+                    #str_data = data
+                    l_data.append(str_data)
                 if len(l_data) > 0:
-                    self.InsertToDB(l_data)
+                    self.process_all_data(l_data)
                 time.sleep(0.3)
             except Exception as e:
                 self.log_func(traceback.format_exc())
+
+    def process_all_data(self, data_list):
+        length = len(data_list)
+        group_len = 22
+        group_count = length // group_len
+
+        msg = ''.join(data_list)
+        self.log_func("receive data: %s, group count: %d" % (msg, group_count))
+
+        for group_index in range(group_count):
+            start_index = group_index * group_len 
+            end_index = (group_index + 1) * group_len 
+            val_list = data_list[start_index:end_index]
+            self.InsertToDB(val_list)
 
     def process_serial_data(self):
         try:
@@ -150,8 +166,7 @@ class Communication():
                     session = session()
                     # 创建Query查询，filter是where条件，最后调用one()返回唯一行，如果调用all()则返回所有行:
                     session.execute(sql, params={'car_no':car_no, 'data_flag':data_flag, 'upload_time':upload_time})
-                    session.commit()
-                    print('insert %s success' % data)   
+                    session.commit() 
                     self.log_func('insert %s success' % data)
                 else:
                     self.log_func('skip %s, casue the in the interval.' % data)
@@ -159,18 +174,27 @@ class Communication():
             self.log_func('skip %s, cause not begin with 0116' % data)
 
 
+def get_app_path():
+    exe_file = os.path.realpath(sys.executable)
+    base_path = os.path.abspath(os.path.dirname(exe_file)) 
+    return base_path
+
+
 def read_config(base_path=None, filename='etc.ini'):
     '''
     Reads the configuration file containing processes to spawn information
     '''
     if not base_path:
-        exe_file = os.path.realpath(sys.executable)
-        base_path = os.path.abspath(os.path.dirname(exe_file)) 
+        base_path = get_app_path()
     config = configparser.ConfigParser()
     config.optionxform = str
     path = os.path.join(base_path, filename)
     config.read(path)
     return config['DEFAULT']
+
+
+def print_log(info):
+    print(info)
 
 
 class ParseSerialService(win32serviceutil.ServiceFramework):
@@ -219,21 +243,19 @@ class ParseSerialService(win32serviceutil.ServiceFramework):
             self.job_log_dir = config["job_log_dir"]
             self.write_log("read config success.")
         except Exception as ex:
-            temp_log(traceback.format_exc())
+            self.write_log(traceback.format_exc())
 
     def write_log(self, info):
         log_file = datetime.datetime.now().strftime("%y%m%d.log")
         timestamp = datetime.datetime.now().strftime("%Y-%m-%d %H-%M-%S")
-        file_path = os.path.join(self.job_log_dir, log_file)
+        if self.job_log_dir:
+            file_path = os.path.join(self.job_log_dir, log_file)
+        else:
+            file_path = os.path.join(get_app_path(), log_file)
         with open(file_path, 'a') as f:
-            content = "%s\r\n%s\r\n" % (timestamp, info)
+            content = "%s:%s\r\n" % (timestamp, info)
             f.write(content)
 
-
-def temp_log(info):
-    with open('D:\\temp.log', 'a') as f:
-        content = "%s\r\n" % info
-        f.write(content)
 
 def main_service():
     if len(sys.argv) == 1:
@@ -244,26 +266,17 @@ def main_service():
         win32serviceutil.HandleCommandLine(ParseSerialService)
 
 
-def ReadConfig():
-    config = configparser.ConfigParser()
-    config.read('D:/etc.ini')
-    return config['DEFAULT']
-
-
-def print_log(info):
-    print(info)
-
-
 def main_app():
-    config = read_config()
-    engine = Communication(config['com_port'], config['bps'] , config['timeout'], config['cars'], config['wait_write_interval'], config['db'], print_log)
-    engine.Recive_data()
-
+    try:
+        config = read_config()
+        engine = Communication(config['com_port'], config['bps'] , config['timeout'], config['cars'], config['wait_write_interval'], config['db'], print_log)
+        engine.Recive_data()
+    except Exception as ex:
+        print_log(traceback.format_exc())
 
 if __name__ == '__main__':
-    is_service = True
+    is_service = False
     if is_service:
         main_service()
     else:
         main_app()
-
