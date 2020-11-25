@@ -275,8 +275,10 @@ def main_app():
         print_log(traceback.format_exc())
 
 if __name__ == '__main__':
-    is_service = False
-    if is_service:
-        main_service()
-    else:
-        main_app()
+    while True:
+        is_service = False
+        if is_service:
+            main_service()
+        else:
+            main_app()
+        time.sleep(0.5)
