@@ -2,6 +2,7 @@ import os
 import datetime
 import time
 import configparser
+import traceback
 
 import serial
 import serial.tools.list_ports
@@ -275,10 +276,13 @@ def main_app():
         print_log(traceback.format_exc())
 
 if __name__ == '__main__':
+    main_service()
+    '''
     while True:
-        is_service = False
+        is_service = True
         if is_service:
             main_service()
         else:
             main_app()
         time.sleep(0.5)
+    '''
