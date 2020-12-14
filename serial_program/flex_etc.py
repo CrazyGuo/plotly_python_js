@@ -253,7 +253,7 @@ class ParseSerialService(win32serviceutil.ServiceFramework):
             file_path = os.path.join(self.job_log_dir, log_file)
         else:
             file_path = os.path.join(get_app_path(), log_file)
-        with open(file_path, 'a') as f:
+        with open(file_path, 'a', encoding="utf-8") as f:
             content = "%s:%s\r\n" % (timestamp, info)
             f.write(content)
 
