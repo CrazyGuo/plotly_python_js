@@ -20,7 +20,7 @@ class FlexMpsMpartItem(Base):
 
 
 def get_oracle_data():
-    db_engine = create_engine('oracle://READ_898:Flexbaan_898@am3p1rpt.flex.com:1571/am3p1', encoding="utf-8", max_identifier_length=30)
+    db_engine = create_engine('oracle://user:password@ip:port/db', encoding="utf-8", max_identifier_length=30)
     sql = """
                 select trim(A.item) as item
                 from bo_read898.tcibd001 A
