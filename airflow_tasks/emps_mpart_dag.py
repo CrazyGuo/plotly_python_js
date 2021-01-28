@@ -15,7 +15,7 @@ default_args = {
 dag = DAG("eMPS_Mpart_Items", 
         description="Get mpart items from baan, insert to FlexPsApp.dbo.FlexMpsMpartItems",
         default_args=default_args, 
-        schedule_interval='30 06 * * * *')
+        schedule_interval='30 06 * * *')
 
 def invoke_python_file():
     cmmd = "%s %s" % ("python", PYTHON_TARGET_File)
